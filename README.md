@@ -1,0 +1,2 @@
+# jsUtils
+Some Javascript utilities
