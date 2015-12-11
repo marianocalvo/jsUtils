@@ -1,45 +1,43 @@
 # idVarsAutoDeclarer
 
-This utility declares automatically a variable for every element with an `id` attribute within the DOM node you give it as parameter.
+This function declares automatically a variable for every element with an `id` attribute within the DOM node that you give it as `node` parameter. The variable is declared into the object that you set as `scope` parameter.
 
 The name of the variable will be the value of the `id` attribute.
 
-### How it works
+In summary:
 
-The utility is composed in two parts:
-
-1 - A function `getStringForEvalIds` that takes a DOM node as parameter and returns a String with the sequence of the Javascript variable declarations (to be eval()'ed).
-
-2 - A call to the Javascript eval() function from wichever scope you want the variables to work.
-
-### How to use it
-
-  1 - Include *idVarsAutoDeclarer.js* in your HTML or copy the `getStringForEvalIds` function in your JS script code.
+You will have to write
 
 ```javascript
-function getStringForEvalIds(node) {
-    var aIds = [];
-    var getAllIdsOfNode = function (node) {
-        if (node.hasAttribute("id"))
-            aIds.push(node.getAttribute("id"));
-        node = node.firstElementChild;
-        while (node) {
-            getAllIdsOfNode(node);
-            node = node.nextElementSibling;
-        }
-    };
-    getAllIdsOfNode(node);
-    var stringForEval = "";
-    for (var i in aIds) {
-        stringForEval += 'var ' + aIds[i] + ' = document.getElementById("' + aIds[i] + '");';
-    }
-    return stringForEval;
-}
+idVarsAutoDeclarer();
 ```
 
-  2 - Call the `eval()` function giving it the result of the function as parameter.
+instead of
 
-`eval(getStringForEvalIds(node));`
+```javascript
+var myElement1 = document.getElementById("myElement1");
+var myElement2 = document.getElementById("myElement2");
+var myElement3 = document.getElementById("myElement3");
+...
+```
+
+### Parameters
+
+**node** (optional)
+
+*Default value: document.body*
+
+Starting DOM node where the DOM nodes with id attribute are searched.
+
+If you use the default value, the function will look for nodes with id into all your `<body>` element.
+
+**scope** (optional)
+
+*Default value: window*
+
+Object where the variables will be declared as properties.
+
+If you use the default value, the function will add the variables as properties of the window object. It means that the will be declared as global variables in your script.
 
 
 ### Example
@@ -48,7 +46,7 @@ function getStringForEvalIds(node) {
 <html>
   <head>
     <script>
-      function getStringForEvalIds(node) {
+      function idVarsAutoDeclarer(node, scope) {
         //...
       }
     <script>
@@ -62,9 +60,10 @@ function getStringForEvalIds(node) {
     
     <script>
     
-      eval(getStringForEvalIds(document.body));
+      idVarsAutoDeclarer();
       
       /* This single line replaces these other:
+      *
       *  var myHeader = document.getElementById("myHeader");
       *  var butChange = document.getElementById("butChange");
       *
