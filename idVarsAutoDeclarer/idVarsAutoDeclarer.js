@@ -1,26 +1,29 @@
-function getStringForEvalIds(node, scope) {
+function idVarsAutoDeclarer(node, scope) {
+    
+    var _node = node || document.body;
     var _scope = scope || window;
-    var aIds = [];
+    
     var getAllIdsOfNode = function (node) {
-        if (node.hasAttribute("id"))
-            aIds.push(node.getAttribute("id"));
+        if (node.hasAttribute("id")){
+            var id = node.getAttribute("id");
+            _scope[id] = document.getElementById(id);
+        }
         node = node.firstElementChild;
         while (node) {
             getAllIdsOfNode(node);
             node = node.nextElementSibling;
         }
     };
-    getAllIdsOfNode(node);
-    var stringForEval = "";
-    for (var i in aIds) {
-      _scope[aIds[i]] = document.getElementById(aIds[i]);
-      //stringForEval += 'var ' + aIds[i] + ' = document.getElementById("' + aIds[i] + '");';
-    }
-
-    return stringForEval;
+    
+    getAllIdsOfNode(_node);
 }
 
-// Call eval(getStringForEvalIds(node)); from wichever scope you want the variables to work
-//
-// Call getStringForEvalIds(node) or if you dont want to use the global(window) scope, pass an object to add the variable there:
-// getStringForEvalIds(exampleElement, myObject);   myObject.exampleElement;
+// Call idVarsAutoDeclarer() to declare all the HTML elements with id attribute in your <body>
+// as JavaScript global variables in your script.
+
+// Optional param "node" (default: document.body)
+// Sets the DOM node where the elements with id attribute are searched.
+
+// Optional param "scope" (default: window)
+// Sets the object where the elements with id attribute are added as properties.
+// Note: in JavaScript, when you declare a global variable, it's added as a property of the window object.
