@@ -4,7 +4,7 @@ This function declares automatically a variable for every element with an `id` a
 
 The name of the variable will be the value of the `id` attribute.
 
-In summary:
+**In summary:**
 
 You will have to write
 
@@ -23,6 +23,8 @@ var myElement3 = document.getElementById("myElement3");
 
 ### Parameters
 
+___
+
 **node** (optional)
 
 *Default value: document.body*
@@ -30,6 +32,8 @@ var myElement3 = document.getElementById("myElement3");
 Starting DOM node where the DOM nodes with id attribute are searched.
 
 If you use the default value, the function will look for nodes with id into all your `<body>` element.
+
+___
 
 **scope** (optional)
 
@@ -39,6 +43,7 @@ Object where the variables will be declared as properties.
 
 If you use the default value, the function will add the variables as properties of the window object. It means that the will be declared as global variables in your script.
 
+___
 
 ### Example
 
@@ -49,7 +54,7 @@ If you use the default value, the function will add the variables as properties 
       function idVarsAutoDeclarer(node, scope) {
         //...
       }
-    <script>
+    </script>
   </head>
   <body>
     
