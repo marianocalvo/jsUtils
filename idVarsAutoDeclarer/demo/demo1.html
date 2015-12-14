@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Demo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+        <header>
+        </header>
+        <main>
+            <div id="divFormulario">
+                <form>
+                    <fieldset>
+                        <legend>Formulario de validación (RegExp)</legend>
+                        <div id="divNombre">
+                            <label for="nombre">Nombre:</label>
+                            <br/>
+                            <input autofocus type="text" id="txtNombre" name="nombre" placeholder="Nombre (2-100)">
+                        </div>
+                        <div id="divTlfF">
+                            <label for="telefonoFijo">Teléfono Fijo:</label>
+                            <br/>
+                            <input type="text" id="txtTelefonoFijo" name="telefonoFijo" placeholder="Telefono Fijo">
+                        </div>
+                        <div id="divTlfM">
+                            <label for="telefonoMovil">Teléfono Móvil:</label>
+                            <br/>
+                            <input type="text" id="txtTelefonoMovil" name="telefonoMovil" placeholder="Telefono Móvil">
+                        </div>
+                        <div id="divCP">
+                            <label for="cp">CP:</label>
+                            <br/>
+                            <input type="text" id="txtCP" name="cp" placeholder="Código postal">
+                        </div>
+                        <div id="divFNac">
+                            <label for="fnacimiento">Fecha de nacimiento:</label>
+                            <br/>
+                            <input type="text" id="txtFNac" name="fnacimiento" placeholder="dd/mm/aaaa">
+                        </div>
+                        <div id="divEmail">
+                            <label for="email">Email:</label>
+                            <br/>
+                            <input type="text" id="txtEmail" name="email">
+                        </div>
+                        <div id="divSelCoche">
+                            <label for="coche">Tipo de coche:</label>
+                            <br/>
+                            <select id="selCoche" name="coche">
+                                <option value="Selecciona...">Selecciona...</option>
+                                <option value="Audi">Audi</option>
+                                <option value="BMW">BMW</option>
+                                <option value="Audi">Volkswagen</option>
+                            </select>
+                        </div>
+                        <div id="divCasillas">
+                            Extra1
+                            <input type="checkbox" name="extra" value="Extra1"> Extra2
+                            <input type="checkbox" name="extra" value="Extra2"> Extra3
+                            <input type="checkbox" name="extra" value="Extra3">
+                        </div>
+                        <input type="button" id="butValidar" value="Validar">
+                    </fieldset>
+                </form>
+            </div>
+            <div id="divValidar" class="divValidar">
+                <div id="divValNombre">Nombre:</div>
+                <div id="divValTlfF">Teléfono Fijo:</div>
+                <div id="divValTlfM">Teléfono Movil:</div>
+                <div id="divValCP">CP:</div>
+                <div id="divValFNac">Fecha Nacimiento:</div>
+                <div id="divValEmail">Email:</div>
+                <div id="divValSelCoche">Tipo de coche:</div>
+                <div id="divValCExtra">Extras de coche:</div>
+            </div>
+
+        </main>
+        <footer>
+
+        </footer>
+    </body>
+    <script type="text/javascript" src="../idVarsAutoDeclarer.js"></script>
+    <script>
+      idVarsAutoDeclarer();
+      console.log(divValidar);
+      console.log(divValNombre);
+    </script>
+
+</html>
