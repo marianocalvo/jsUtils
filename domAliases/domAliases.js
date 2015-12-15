@@ -1,6 +1,6 @@
 // get Element
-function gE (elem) {
-    return document.getElementById(elem);
+function gE (elementId) {
+    return document.getElementById(elementId);
 };
 
 // create Textnode
@@ -9,8 +9,8 @@ function cT (text) {
 };
 
 // create Element
-function cE (elem) {
-    return document.createElement(elem);
+function cE (typeOfElement) {
+    return document.createElement(typeOfElement);
 };
 
 // empty Element
