@@ -1,12 +1,19 @@
-function idVarsAutoDeclarer(node, scope) {
-    
-    var _node = node || document.body;
-    var _scope = scope || window;
-    
+/**
+ @params Object configuration
+    configuration.node is the inital node to explore
+    configuration.scope is the scope to save the news variables
+    configuration.attribute is the attribute which read the name
+ */
+function idVarsAutoDeclarer(configuration) {
+    configuration = configuration || {node: document.body, scope: window, attribute: 'id'};
+    var _node = configuration.node || document.body;
+    var _scope = configuration.scope || window;
+    var _attribute = configuration.attribute || 'id';
+
     var getAllIdsOfNode = function (node) {
-        if (node.hasAttribute("id")){
-            var id = node.getAttribute("id");
-            _scope[id] = document.getElementById(id);
+        if (node.hasAttribute(_attribute)){
+            var id = node.getAttribute(_attribute);
+            _scope[id] = node;//document.getElementById(id);
         }
         node = node.firstElementChild;
         while (node) {
@@ -14,7 +21,7 @@ function idVarsAutoDeclarer(node, scope) {
             node = node.nextElementSibling;
         }
     };
-    
+
     getAllIdsOfNode(_node);
 }
 
